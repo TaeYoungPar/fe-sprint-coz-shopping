@@ -45,7 +45,7 @@ const TopTextDiv = styled.div`
   height: 24px;
 `;
 
-const BookMarkList = ({ items, toggleBookmark }) => {
+const BookMarkList = ({ items, setItems }) => {
   return (
     <ListContainer>
       {items.map((el) => (
@@ -54,7 +54,11 @@ const BookMarkList = ({ items, toggleBookmark }) => {
             src={el.type === "Brand" ? el.brand_image_url : el.image_url}
           />
 
-          <Bookmark itemId={el.id} toggleBookmark={toggleBookmark} />
+          <Bookmark
+            itemId={el.id}
+            setItems={setItems}
+            isBookmarked={el.isBookmarked}
+          />
           <TopTextDiv>
             <TextDiv>
               {el.type === "Brand"

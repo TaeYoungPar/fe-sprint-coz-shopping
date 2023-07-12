@@ -28,18 +28,6 @@ const Mainbody = () => {
       setIsLoading(false);
     }
   };
-
-  const toggleBookmark = (itemId) => {
-    setItems((prevItems) =>
-      prevItems.map((item) => {
-        if (item.id === itemId) {
-          return { ...item, isBookmarked: !item.isBookmarked };
-        }
-        return item;
-      })
-    );
-  };
-
   return (
     <main className="mainbody-container">
       {isLoading ? (
@@ -47,10 +35,11 @@ const Mainbody = () => {
       ) : (
         <>
           <h2>상품 리스트</h2>
-          <Itemlist items={items.slice(0, 4)} toggleBookmark={toggleBookmark} />
+          <Itemlist items={items.slice(0, 4)} setItems={setItems} />
           <h2>북마크 리스트</h2>
           <BookMarkList
             items={items.filter((item) => item.isBookmarked).slice(0, 4)}
+            setItems={setItems}
           />
         </>
       )}

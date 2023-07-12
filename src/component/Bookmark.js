@@ -10,12 +10,16 @@ const BookmarkIcon = styled.img`
   cursor: pointer;
 `;
 
-const Bookmark = ({ itemId, toggleBookmark }) => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
-
+const Bookmark = ({ itemId, setItems, isBookmarked }) => {
   const handleClick = () => {
-    setIsBookmarked((prev) => !prev);
-    toggleBookmark(itemId);
+    setItems((prevItems) =>
+      prevItems.map((item) => {
+        if (item.id === itemId) {
+          return { ...item, isBookmarked: !isBookmarked };
+        }
+        return item;
+      })
+    );
   };
 
   return (
