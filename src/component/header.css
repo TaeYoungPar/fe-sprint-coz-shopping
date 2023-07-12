@@ -1,0 +1,30 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+
+  background-color: whitesmoke;
+  max-width: 1280px;
+  height: 80px;
+  padding: 0 76px;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  z-index: 10;
+}
+
+span.logo-title {
+  font-size: 2rem;
+  font-weight: bold;
+  padding-left: 12px;
+}
+
+div.logo-container {
+  display: flex;
+}
+
+div.logo-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
