@@ -8,6 +8,9 @@
   max-width: 1280px;
   height: 80px;
   padding: 0 76px;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  z-index: 10;
 }
 
 span.logo-title {

@@ -1,0 +1,8 @@
+.mainbody-container {
+  padding: 0 76px;
+  background-color: whitesmoke;
+  padding: 12px 0;
+}
+.mainbody-container > h2 {
+  margin-left: 2.5rem;
+}
