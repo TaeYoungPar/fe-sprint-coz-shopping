@@ -10,19 +10,19 @@ const BookmarkIcon = styled.img`
   cursor: pointer;
 `;
 
-const Bookmark = ({ itemId }) => {
+const Bookmark = ({ itemId, toggleBookmark }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
-  const toggleBookmark = () => {
+  const handleClick = () => {
     setIsBookmarked((prev) => !prev);
+    toggleBookmark(itemId);
   };
 
   return (
     <BookmarkIcon
       src={isBookmarked ? "Property 1=on.png" : "Property 1=off.png"}
       alt="Bookmark Icon"
-      onClick={toggleBookmark}
-      itemId={itemId}
+      onClick={handleClick}
     />
   );
 };
