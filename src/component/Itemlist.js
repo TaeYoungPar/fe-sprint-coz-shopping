@@ -1,9 +1,12 @@
 import { styled } from "styled-components";
 import Bookmark from "./Bookmark";
+import { useState } from "react";
+import Modal from "./Modal";
 
 const ListContainer = styled.div`
   display: flex;
-  justify-content: center;
+  padding: 20px;
+  margin-left: 80px;
 `;
 
 const ItemContainer = styled.div`
@@ -11,13 +14,13 @@ const ItemContainer = styled.div`
   flex-direction: column;
   position: relative;
   height: 274px;
-  padding: 0 12px;
-  margin: 12px;
+  padding: 0 20px;
+  margin: 20px;
 `;
 
 const UrlImg = styled.img`
-  width: 264px;
-  height: 210px;
+  width: 340px;
+  height: 217px;
   margin-bottom: 12px;
   border-radius: 12px;
 `;
@@ -46,13 +49,41 @@ const TopTextDiv = styled.div`
 `;
 
 const Itemlist = ({ items, setItems }) => {
+  const [selectedImage, setSelectedImage] = useState(false);
+  const [selectedItem, setSelectedItem] = useState([]);
+
+  const openModal = (el) => {
+    setSelectedImage(true);
+    setSelectedItem(el);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(false);
+  };
   return (
     <ListContainer>
       {items.map((el) => (
         <ItemContainer key={el.id}>
           <UrlImg
             src={el.type === "Brand" ? el.brand_image_url : el.image_url}
+            onClick={() => openModal(el)}
           />
+
+          {selectedImage && (
+            <Modal
+              imageUrl={
+                selectedItem.type === "Brand"
+                  ? selectedItem.brand_image_url
+                  : selectedItem.image_url
+              }
+              onClose={closeModal}
+              itemId={selectedItem.id}
+              setItems={setItems}
+              isBookmarked={selectedItem.isBookmarked}
+              selectedImage={selectedImage}
+              selectedItem={selectedItem}
+            />
+          )}
 
           <Bookmark
             itemId={el.id}

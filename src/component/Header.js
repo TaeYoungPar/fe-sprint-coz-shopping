@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./header.css";
 import { useState } from "react";
-import Modal from "./Modal";
+import DropDown from "./DropDown";
 import { styled } from "styled-components";
 
 const Hamburger = styled.img`
@@ -14,7 +14,6 @@ const Header = () => {
   const [isOn, setIsOn] = useState(false);
   const modalHandler = () => {
     setIsOn((prev) => !prev);
-    console.log("끄고키기");
   };
 
   return (
@@ -33,7 +32,7 @@ const Header = () => {
           alt="hamburger menu"
           onClick={modalHandler}
         />
-        {isOn ? <Modal /> : ""}
+        {isOn ? <DropDown /> : ""}
       </div>
     </header>
   );

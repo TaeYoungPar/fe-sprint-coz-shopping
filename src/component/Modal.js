@@ -1,59 +1,71 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
+import Bookmark from "./Bookmark";
 
-// const ModalContainer = styled.div`
-//   display: flex;
-//   align-items: center;
-// `;
-
-const ModalPolygon = styled.img`
-  width: 16px;
-  height: 18px;
-  position: absolute;
-  transform: translate(50%, 0%);
+const ModalContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
 `;
-const ModalMenu = styled.div`
+
+const ModalContent = styled.img`
+  width: 744px;
+  height: 480px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+`;
+
+const BookmarkWithText = styled.div`
   position: absolute;
-  background-color: white;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  transform: translate(-60%, 12%);
-  border-radius: 12px;
-  margin-top: -5px;
-  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
-  z-index: 10;
 `;
 
-const ModalPtag = styled.p`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  width: 200px;
-  height: 50px;
-  padding: 15px;
-  margin: 10px 5px 0px 5px;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+const TextDiv = styled.div`
+  position: absolute;
+  transform: translate(-315px, 190px);
+  width: 664px;
+  height: 30px;
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
 `;
 
-const ModalImg = styled.img`
-  margin-right: 8px;
-`;
-
-const Modal = () => {
+const Modal = ({
+  imageUrl,
+  onClose,
+  isBookmarked,
+  setItems,
+  itemId,
+  selectedImage,
+  selectedItem,
+}) => {
   return (
-    <div>
-      <ModalPolygon src="polygon.png" />
-      <ModalMenu>
-        <ModalPtag>박태영님,안녕하세요!</ModalPtag>
-        <ModalPtag>
-          <ModalImg src="product.png" />
-          <p>상품리스트 페이지</p>
-        </ModalPtag>
-        <ModalPtag>
-          <ModalImg src="bookmark.png" />
-          <p>북마크 페이지</p>
-        </ModalPtag>
-      </ModalMenu>
-    </div>
+    <ModalContainer onClick={onClose}>
+      <ModalContent src={imageUrl} alt="Modal Image" />
+      <BookmarkWithText>
+        <Bookmark
+          itemId={itemId}
+          setItems={setItems}
+          isBookmarked={isBookmarked}
+          selectedImage={selectedImage}
+        />
+        <TextDiv>
+          {selectedItem.type === "Brand"
+            ? selectedItem.brand_name
+            : selectedItem.type === "Category"
+            ? "#" + selectedItem.title
+            : selectedItem.title}
+        </TextDiv>
+      </BookmarkWithText>
+    </ModalContainer>
   );
 };
 
