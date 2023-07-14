@@ -6,13 +6,19 @@ import BookMarkList from "./BookMarkList";
 import { styled } from "styled-components";
 
 const Texth2 = styled.h2`
-  position: absolute;
-  left: 140px;
-  width: 200px;
+  width: 82%;
+  height: 10px;
+`;
+const Ddd = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //overflow: hidden;
+  //이중div
 `;
 
-const Mainbody = () => {
-  const [items, setItems] = useState([]);
+const Mainbody = ({ items, setItems }) => {
+  //   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -41,17 +47,15 @@ const Mainbody = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <div>
+          <Ddd>
             <Texth2>상품 리스트</Texth2>
             <Itemlist items={items.slice(0, 4)} setItems={setItems} />
-          </div>
-          <div>
             <Texth2>북마크 리스트</Texth2>
             <BookMarkList
               items={items.filter((item) => item.isBookmarked).slice(0, 4)}
               setItems={setItems}
             />
-          </div>
+          </Ddd>
         </>
       )}
     </main>

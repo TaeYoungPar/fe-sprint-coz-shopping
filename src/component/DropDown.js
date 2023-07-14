@@ -42,19 +42,19 @@ const DropDownImg = styled.img`
 const DropDown = () => {
   return (
     <div>
-      <DropDownlPolygon src="polygon.png" />
+      <DropDownlPolygon src="Image/polygon.png" />
       <DropDownMenu>
         <DropDownPtag>박태영님,안녕하세요!</DropDownPtag>
-        <Link to="/productslist">
+        <Link to="/products/list">
           <DropDownPtag>
-            <DropDownImg src="product.png" />
+            <DropDownImg src="/Image/product.png" />
             <p>상품리스트 페이지</p>
           </DropDownPtag>
         </Link>
 
         <Link to="/bookmark">
           <DropDownPtag>
-            <DropDownImg src="bookmark.png" />
+            <DropDownImg src="/Image/bookmark.png" />
             <p>북마크 페이지</p>
           </DropDownPtag>
         </Link>

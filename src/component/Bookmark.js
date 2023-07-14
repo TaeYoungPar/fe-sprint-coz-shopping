@@ -35,13 +35,13 @@ const Bookmark = ({ itemId, setItems, isBookmarked, selectedImage }) => {
 
   return selectedImage ? (
     <ModalBookmarkIcon
-      src={isBookmarked ? "Property 1=on.png" : "Property 1=off.png"}
+      src={isBookmarked ? "/Image/Property-on.png" : "/Image/Property-off.png"}
       alt="Bookmark Icon"
       onClick={handleClick}
     />
   ) : (
     <BookmarkIcon
-      src={isBookmarked ? "Property 1=on.png" : "Property 1=off.png"}
+      src={isBookmarked ? "/Image/Property-on.png" : "/Image/Property-off.png"}
       alt="Bookmark Icon"
       onClick={handleClick}
     />

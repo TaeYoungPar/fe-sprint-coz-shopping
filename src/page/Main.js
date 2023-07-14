@@ -1,8 +1,8 @@
-import Mainbody from "../component/Mainbody";
-// import "./main.css";
+// import Mainbody from "../component/Mainbody";
+// // import "./main.css";
 
-const Main = () => {
-  return <Mainbody />;
-};
+// const Main = () => {
+//   return <Mainbody />;
+// };
 
-export default Main;
+// export default Main;

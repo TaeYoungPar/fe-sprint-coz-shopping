@@ -1,4 +1,6 @@
 .mainbody-container {
+  display: flex;
+  justify-content: center;
   background-color: whitesmoke;
   padding: 12px 0;
 }

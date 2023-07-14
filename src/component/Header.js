@@ -21,14 +21,14 @@ const Header = () => {
       <div className="logo-container">
         <Link to="/">
           <div className="logo-img">
-            <img src="logo.png" alt="logo" />
+            <img src="/Image/logo.png" alt="logo" />
           </div>
         </Link>
         <span className="logo-title">COZ Shopping</span>
       </div>
       <div>
         <Hamburger
-          src="hamburger.png"
+          src="/Image/hamburger.png"
           alt="hamburger menu"
           onClick={modalHandler}
         />

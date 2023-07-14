@@ -5,8 +5,8 @@ import Modal from "./Modal";
 
 const ListContainer = styled.div`
   display: flex;
+  width: 100%;
   padding: 20px;
-  margin-left: 80px;
 `;
 
 const ItemContainer = styled.div`
@@ -19,7 +19,7 @@ const ItemContainer = styled.div`
 `;
 
 const UrlImg = styled.img`
-  width: 340px;
+  width: 300px;
   height: 217px;
   margin-bottom: 12px;
   border-radius: 12px;
