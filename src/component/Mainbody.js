@@ -17,29 +17,7 @@ const Ddd = styled.div`
   //이중div
 `;
 
-const Mainbody = ({ items, setItems }) => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    getItems();
-  }, []);
-
-  const getItems = async () => {
-    try {
-      const response = await axios.get(
-        "http://cozshopping.codestates-seb.link/api/v1/products"
-      );
-      const itemsWithBookmark = response.data.map((item) => ({
-        ...item,
-        isBookmarked: false,
-      }));
-      setItems(itemsWithBookmark);
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-      setIsLoading(false);
-    }
-  };
+const Mainbody = ({ items, setItems, isLoading }) => {
   const handleBookmarkClick = (itemId) => {
     setItems((prevItems) =>
       prevItems.map((item) => {

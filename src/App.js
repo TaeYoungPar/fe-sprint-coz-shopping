@@ -6,9 +6,33 @@ import ItemlistPage from "./page/ItemlistPage";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
   const [items, setItems] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getItems();
+  }, []);
+
+  const getItems = async () => {
+    try {
+      const response = await axios.get(
+        "http://cozshopping.codestates-seb.link/api/v1/products"
+      );
+      const itemsWithBookmark = response.data.map((item) => ({
+        ...item,
+        isBookmarked: false,
+      }));
+      setItems(itemsWithBookmark);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="App">
@@ -17,7 +41,13 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Mainbody items={items} setItems={setItems} />}
+            element={
+              <Mainbody
+                items={items}
+                setItems={setItems}
+                isLoading={isLoading}
+              />
+            }
           />
           <Route
             path="/products/list"
