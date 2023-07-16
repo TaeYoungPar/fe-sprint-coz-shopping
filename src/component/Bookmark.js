@@ -21,16 +21,15 @@ const ModalBookmarkIcon = styled.img`
 //   transform: translate(-50%, -50%);
 // `;
 
-const Bookmark = ({ itemId, setItems, isBookmarked, selectedImage }) => {
+const Bookmark = ({
+  itemId,
+  setItems,
+  isBookmarked,
+  selectedImage,
+  onBookmarkClick,
+}) => {
   const handleClick = () => {
-    setItems((prevItems) =>
-      prevItems.map((item) => {
-        if (item.id === itemId) {
-          return { ...item, isBookmarked: !isBookmarked };
-        }
-        return item;
-      })
-    );
+    onBookmarkClick(itemId); // 북마크 클릭 이벤트 핸들러 호출
   };
 
   return selectedImage ? (

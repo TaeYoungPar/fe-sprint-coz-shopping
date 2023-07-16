@@ -48,7 +48,7 @@ const TopTextDiv = styled.div`
   height: 24px;
 `;
 
-const Itemlist = ({ items, setItems }) => {
+const Itemlist = ({ items, setItems, onBookmarkClick }) => {
   const [selectedImage, setSelectedImage] = useState(false);
   const [selectedItem, setSelectedItem] = useState([]);
 
@@ -82,6 +82,7 @@ const Itemlist = ({ items, setItems }) => {
               isBookmarked={selectedItem.isBookmarked}
               selectedImage={selectedImage}
               selectedItem={selectedItem}
+              onBookmarkClick={onBookmarkClick}
             />
           )}
 
@@ -89,6 +90,8 @@ const Itemlist = ({ items, setItems }) => {
             itemId={el.id}
             setItems={setItems}
             isBookmarked={el.isBookmarked}
+            selectedImage={selectedImage}
+            onBookmarkClick={onBookmarkClick}
           />
           <TopTextDiv>
             <TextDiv>

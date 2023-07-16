@@ -48,7 +48,7 @@ const TopTextDiv = styled.div`
   height: 24px;
 `;
 
-const BookMarkList = ({ items, setItems }) => {
+const BookMarkList = ({ items, setItems, onBookmarkClick }) => {
   const [selectedImage, setSelectedImage] = useState(false);
   const [selectedItem, setSelectedItem] = useState([]);
 
@@ -60,6 +60,17 @@ const BookMarkList = ({ items, setItems }) => {
   const closeModal = () => {
     setSelectedImage(false);
   };
+
+  // const handleBookmarkToggle = (itemId) => {
+  //   setItems((prevItems) =>
+  //     prevItems.map((item) =>
+  //       item.id === itemId
+  //         ? { ...item, isBookmarked: !item.isBookmarked }
+  //         : item
+  //     )
+  //   );
+  // };
+
   return (
     <ListContainer>
       {items.map((el) => (
@@ -82,6 +93,7 @@ const BookMarkList = ({ items, setItems }) => {
               isBookmarked={selectedItem.isBookmarked}
               selectedImage={selectedImage}
               selectedItem={selectedItem}
+              onBookmarkClick={onBookmarkClick}
             />
           )}
 
@@ -89,6 +101,8 @@ const BookMarkList = ({ items, setItems }) => {
             itemId={el.id}
             setItems={setItems}
             isBookmarked={el.isBookmarked}
+            selectedImage={selectedImage}
+            onBookmarkClick={onBookmarkClick}
           />
           <TopTextDiv>
             <TextDiv>

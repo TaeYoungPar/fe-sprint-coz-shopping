@@ -5,7 +5,7 @@ import BookmarkPage from "./page/BookmarkPage";
 import ItemlistPage from "./page/ItemlistPage";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [items, setItems] = useState([]);

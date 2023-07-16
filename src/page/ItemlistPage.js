@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Itemlist from "../component/Itemlist";
 import { styled } from "styled-components";
 
@@ -6,6 +6,7 @@ const Flex = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: whitesmoke;
 `;
 
 const CategoryDiv = styled.div`
@@ -27,17 +28,33 @@ const Div = styled.div`
 `;
 
 const ItemlistPage = ({ items, setItems }) => {
-  const [filteredItems, setFilteredItems] = useState(items);
+  const [selectedCategory, setSelectedCategory] = useState("전체");
+
+  const filteredItems =
+    selectedCategory === "전체"
+      ? items
+      : items.filter((el) => el.type === selectedCategory);
 
   const onClickHandler = (type) => {
-    const filtered = items.filter((el) => el.type === type);
-    setFilteredItems(filtered);
+    setSelectedCategory(type);
   };
+
+  const handleBookmarkClick = (itemId) => {
+    setItems((prevItems) =>
+      prevItems.map((item) => {
+        if (item.id === itemId) {
+          return { ...item, isBookmarked: !item.isBookmarked };
+        }
+        return item;
+      })
+    );
+  };
+
   return (
     <Flex>
       <CategoryDiv>
         <div>
-          <Image src="/Image/all.png" />
+          <Image src="/Image/all.png" onClick={() => onClickHandler("전체")} />
           <TextDiv>전체</TextDiv>
         </div>
         <div>
@@ -45,34 +62,35 @@ const ItemlistPage = ({ items, setItems }) => {
             src="/Image/prod.png"
             onClick={() => onClickHandler("Product")}
           />
-          <TextDiv>상품</TextDiv>
+          <TextDiv onClick={() => onClickHandler("Product")}>상품</TextDiv>
         </div>
         <div>
           <Image
             src="/Image/cate.png"
             onClick={() => onClickHandler("Category")}
           />
-          <TextDiv>카테고리</TextDiv>
+          <TextDiv onClick={() => onClickHandler("Category")}>카테고리</TextDiv>
         </div>
         <div>
           <Image
             src="/Image/exhib.png"
             onClick={() => onClickHandler("Exhibition")}
           />
-          <TextDiv>기획전</TextDiv>
+          <TextDiv onClick={() => onClickHandler("Exhibition")}>기획전</TextDiv>
         </div>
         <div>
           <Image
             src="/Image/brand.png"
             onClick={() => onClickHandler("Brand")}
           />
-          <TextDiv>브랜드</TextDiv>
+          <TextDiv onClick={() => onClickHandler("Brand")}>브랜드</TextDiv>
         </div>
       </CategoryDiv>
       <Div>
         <Itemlist
-          items={filteredItems.slice(0, 4)}
-          setItems={setFilteredItems}
+          items={filteredItems}
+          setItems={setItems}
+          onBookmarkClick={handleBookmarkClick}
         />
       </Div>
     </Flex>

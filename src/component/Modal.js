@@ -46,6 +46,7 @@ const Modal = ({
   itemId,
   selectedImage,
   selectedItem,
+  onBookmarkClick,
 }) => {
   return (
     <ModalContainer onClick={onClose}>
@@ -56,6 +57,7 @@ const Modal = ({
           setItems={setItems}
           isBookmarked={isBookmarked}
           selectedImage={selectedImage}
+          onBookmarkClick={onBookmarkClick}
         />
         <TextDiv>
           {selectedItem.type === "Brand"

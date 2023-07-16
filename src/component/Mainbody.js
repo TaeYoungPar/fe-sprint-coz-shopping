@@ -6,7 +6,7 @@ import BookMarkList from "./BookMarkList";
 import { styled } from "styled-components";
 
 const Texth2 = styled.h2`
-  width: 82%;
+  width: 90%;
   height: 10px;
 `;
 const Ddd = styled.div`
@@ -18,7 +18,6 @@ const Ddd = styled.div`
 `;
 
 const Mainbody = ({ items, setItems }) => {
-  //   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -41,6 +40,17 @@ const Mainbody = ({ items, setItems }) => {
       setIsLoading(false);
     }
   };
+  const handleBookmarkClick = (itemId) => {
+    setItems((prevItems) =>
+      prevItems.map((item) => {
+        if (item.id === itemId) {
+          return { ...item, isBookmarked: !item.isBookmarked };
+        }
+        return item;
+      })
+    );
+  };
+
   return (
     <main className="mainbody-container">
       {isLoading ? (
@@ -49,11 +59,16 @@ const Mainbody = ({ items, setItems }) => {
         <>
           <Ddd>
             <Texth2>상품 리스트</Texth2>
-            <Itemlist items={items.slice(0, 4)} setItems={setItems} />
+            <Itemlist
+              items={items.slice(0, 4)}
+              setItems={setItems}
+              onBookmarkClick={handleBookmarkClick}
+            />
             <Texth2>북마크 리스트</Texth2>
             <BookMarkList
               items={items.filter((item) => item.isBookmarked).slice(0, 4)}
               setItems={setItems}
+              onBookmarkClick={handleBookmarkClick}
             />
           </Ddd>
         </>
