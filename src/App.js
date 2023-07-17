@@ -100,7 +100,11 @@ function App() {
         </Routes>
         <Footer />
       </Router>
-      <Container position="bottom-right" hideProgressBar={true} />
+      <Container
+        position="bottom-right"
+        hideProgressBar={true}
+        autoClose={1000}
+      />
     </div>
   );
 }
