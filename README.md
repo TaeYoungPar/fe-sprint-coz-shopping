@@ -9,4 +9,9 @@
 
 ## 기술 스택
 
-![react](https://github.com/TaeYoungPar/fe-sprint-coz-shopping/assets/47932834/92c7c8f9-4189-4514-816d-71b9f6297e64)
+	<div align="center">
+	<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" />
+	<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white" />
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat&logo=javascript&logoColor=white" />
+ 
+</div>
