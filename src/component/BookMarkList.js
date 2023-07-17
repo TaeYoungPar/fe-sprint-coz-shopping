@@ -61,80 +61,86 @@ const BookMarkList = ({ items, setItems, onBookmarkClick }) => {
     setSelectedImage(false);
   };
 
-  // const handleBookmarkToggle = (itemId) => {
-  //   setItems((prevItems) =>
-  //     prevItems.map((item) =>
-  //       item.id === itemId
-  //         ? { ...item, isBookmarked: !item.isBookmarked }
-  //         : item
-  //     )
-  //   );
-  // };
+  const chunkItems = (arr, size) => {
+    const chunks = [];
+    for (let i = 0; i < arr.length; i += size) {
+      chunks.push(arr.slice(i, i + size));
+    }
+    return chunks;
+  };
+
+  const itemChunks = chunkItems(items, 4);
 
   return (
-    <ListContainer>
-      {items.map((el) => (
-        <ItemContainer key={el.id}>
-          <UrlImg
-            src={el.type === "Brand" ? el.brand_image_url : el.image_url}
-            onClick={() => openModal(el)}
-          />
+    <>
+      {itemChunks.map((chunk, index) => (
+        <ListContainer key={index}>
+          {chunk.map((el) => (
+            <ItemContainer key={el.id}>
+              <UrlImg
+                src={el.type === "Brand" ? el.brand_image_url : el.image_url}
+                onClick={() => openModal(el)}
+              />
 
-          {selectedImage && (
-            <Modal
-              imageUrl={
-                selectedItem.type === "Brand"
-                  ? selectedItem.brand_image_url
-                  : selectedItem.image_url
-              }
-              onClose={closeModal}
-              itemId={selectedItem.id}
-              setItems={setItems}
-              isBookmarked={selectedItem.isBookmarked}
-              selectedImage={selectedImage}
-              selectedItem={selectedItem}
-              onBookmarkClick={onBookmarkClick}
-            />
-          )}
+              {selectedImage && (
+                <Modal
+                  imageUrl={
+                    selectedItem.type === "Brand"
+                      ? selectedItem.brand_image_url
+                      : selectedItem.image_url
+                  }
+                  onClose={closeModal}
+                  itemId={selectedItem.id}
+                  setItems={setItems}
+                  isBookmarked={selectedItem.isBookmarked}
+                  selectedImage={selectedImage}
+                  selectedItem={selectedItem}
+                  onBookmarkClick={onBookmarkClick}
+                />
+              )}
 
-          <Bookmark
-            itemId={el.id}
-            setItems={setItems}
-            isBookmarked={el.isBookmarked}
-            selectedImage={selectedImage}
-            onBookmarkClick={onBookmarkClick}
-          />
-          <TopTextDiv>
-            <TextDiv>
-              {el.type === "Brand"
-                ? el.brand_name
-                : el.type === "Category"
-                ? "#" + el.title
-                : el.title}
-            </TextDiv>
+              <Bookmark
+                itemId={el.id}
+                setItems={setItems}
+                isBookmarked={el.isBookmarked}
+                selectedImage={selectedImage}
+                onBookmarkClick={onBookmarkClick}
+              />
+              <TopTextDiv>
+                <TextDiv>
+                  {el.type === "Brand"
+                    ? el.brand_name
+                    : el.type === "Category"
+                    ? "#" + el.title
+                    : el.title}
+                </TextDiv>
 
-            {el.type === "Product" ? (
-              <DiscountDiv>{el.discountPercentage + "%"}</DiscountDiv>
-            ) : el.type === "Brand" ? (
-              <TextDiv>관심고객수</TextDiv>
-            ) : (
-              ""
-            )}
-          </TopTextDiv>
-          <TopTextDiv>
-            <div>{el.type === "Exhibition" ? el.sub_title : ""}</div>
+                {el.type === "Product" ? (
+                  <DiscountDiv>{el.discountPercentage + "%"}</DiscountDiv>
+                ) : el.type === "Brand" ? (
+                  <TextDiv>관심고객수</TextDiv>
+                ) : (
+                  ""
+                )}
+              </TopTextDiv>
+              <TopTextDiv>
+                <div>{el.type === "Exhibition" ? el.sub_title : ""}</div>
 
-            {el.type === "Product" ? (
-              <PriceDiv>{parseInt(el.price).toLocaleString() + "원"}</PriceDiv>
-            ) : el.type === "Brand" ? (
-              <FollowerDiv>{el.follower.toLocaleString()}</FollowerDiv>
-            ) : (
-              ""
-            )}
-          </TopTextDiv>
-        </ItemContainer>
+                {el.type === "Product" ? (
+                  <PriceDiv>
+                    {parseInt(el.price).toLocaleString() + "원"}
+                  </PriceDiv>
+                ) : el.type === "Brand" ? (
+                  <FollowerDiv>{el.follower.toLocaleString()}</FollowerDiv>
+                ) : (
+                  ""
+                )}
+              </TopTextDiv>
+            </ItemContainer>
+          ))}
+        </ListContainer>
       ))}
-    </ListContainer>
+    </>
   );
 };
 

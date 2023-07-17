@@ -39,21 +39,24 @@ const DropDownImg = styled.img`
   margin-right: 8px;
 `;
 
-const DropDown = () => {
+const DropDown = ({ setIsOn }) => {
+  const onClickHandler = () => {
+    setIsOn(false);
+  };
   return (
     <div>
       <DropDownlPolygon src="Image/polygon.png" />
       <DropDownMenu>
         <DropDownPtag>박태영님,안녕하세요!</DropDownPtag>
         <Link to="/products/list">
-          <DropDownPtag>
+          <DropDownPtag onClick={onClickHandler}>
             <DropDownImg src="/Image/product.png" />
             <p>상품리스트 페이지</p>
           </DropDownPtag>
         </Link>
 
         <Link to="/bookmark">
-          <DropDownPtag>
+          <DropDownPtag onClick={onClickHandler}>
             <DropDownImg src="/Image/bookmark.png" />
             <p>북마크 페이지</p>
           </DropDownPtag>

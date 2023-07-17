@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BookMarkList from "../component/BookMarkList";
 import { styled } from "styled-components";
+import { useInView } from "react-intersection-observer";
 
 const Flex = styled.div`
   display: flex;
@@ -17,6 +18,10 @@ const CategoryDiv = styled.div`
 
 const Image = styled.img`
   margin: 2px 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const TextDiv = styled.div`
@@ -30,6 +35,19 @@ const BookmarkDiv = styled.div`
 const BookmarkPage = ({ items, setItems }) => {
   const [selectedCategory, setSelectedCategory] = useState("전체");
 
+  const [ref, inView] = useInView();
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    if (inView) {
+      loadMoreItems();
+    }
+  }, [inView]);
+
+  const loadMoreItems = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
   const filteredItems =
     selectedCategory === "전체"
       ? items
@@ -37,6 +55,7 @@ const BookmarkPage = ({ items, setItems }) => {
 
   const onClickHandler = (type) => {
     setSelectedCategory(type);
+    setPage(1);
   };
 
   const handleBookmarkClick = (itemId) => {
@@ -88,10 +107,13 @@ const BookmarkPage = ({ items, setItems }) => {
       </CategoryDiv>
       <BookmarkDiv>
         <BookMarkList
-          items={filteredItems.filter((item) => item.isBookmarked).slice(0, 4)}
+          items={filteredItems
+            .filter((item) => item.isBookmarked)
+            .slice(0, page * 16)}
           setItems={setItems}
           onBookmarkClick={handleBookmarkClick}
         />
+        <div ref={ref}>{console.log("여기랍니다")}</div>
       </BookmarkDiv>
     </Flex>
   );

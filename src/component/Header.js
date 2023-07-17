@@ -32,7 +32,7 @@ const Header = () => {
           alt="hamburger menu"
           onClick={modalHandler}
         />
-        {isOn ? <DropDown /> : ""}
+        {isOn ? <DropDown setIsOn={setIsOn} /> : ""}
       </div>
     </header>
   );
