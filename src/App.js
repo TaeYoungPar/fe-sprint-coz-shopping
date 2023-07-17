@@ -103,7 +103,7 @@ function App() {
       <Container
         position="bottom-right"
         hideProgressBar={true}
-        autoClose={30000}
+        autoClose={1000}
       />
     </div>
   );
