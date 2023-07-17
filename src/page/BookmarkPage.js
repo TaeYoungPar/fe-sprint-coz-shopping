@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import BookMarkList from "../component/BookMarkList";
 import { styled } from "styled-components";
 import { useInView } from "react-intersection-observer";
-
+import { toast } from "react-toastify";
 const Flex = styled.div`
   display: flex;
   flex-direction: column;
@@ -62,8 +62,15 @@ const BookmarkPage = ({ items, setItems }) => {
     setItems((prevItems) =>
       prevItems.map((item) => {
         if (item.id === itemId) {
-          return { ...item, isBookmarked: !item.isBookmarked };
+          const isBookmarked = !item.isBookmarked;
+          if (isBookmarked) {
+            toast.success("북마크가 추가되었습니다."); // 북마크 추가 시 Toast 메시지
+          } else {
+            toast.error("북마크가 제거되었습니다."); // 북마크 제거 시 Toast 메시지
+          }
+          return { ...item, isBookmarked };
         }
+
         return item;
       })
     );

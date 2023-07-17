@@ -23,6 +23,10 @@ const DropDownMenu = styled.div`
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
   z-index: 10;
 `;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
 
 const DropDownPtag = styled.p`
   display: flex;
@@ -31,7 +35,7 @@ const DropDownPtag = styled.p`
   width: 200px;
   height: 50px;
   padding: 15px;
-  margin: 10px 5px 0px 5px;
+  margin: 10px 0px 0px 10px;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
 `;
 
@@ -48,19 +52,19 @@ const DropDown = ({ setIsOn }) => {
       <DropDownlPolygon src="Image/polygon.png" />
       <DropDownMenu>
         <DropDownPtag>박태영님,안녕하세요!</DropDownPtag>
-        <Link to="/products/list">
+        <StyledLink to="/products/list">
           <DropDownPtag onClick={onClickHandler}>
             <DropDownImg src="/Image/product.png" />
             <p>상품리스트 페이지</p>
           </DropDownPtag>
-        </Link>
+        </StyledLink>
 
-        <Link to="/bookmark">
+        <StyledLink to="/bookmark">
           <DropDownPtag onClick={onClickHandler}>
             <DropDownImg src="/Image/bookmark.png" />
             <p>북마크 페이지</p>
           </DropDownPtag>
-        </Link>
+        </StyledLink>
       </DropDownMenu>
     </div>
   );

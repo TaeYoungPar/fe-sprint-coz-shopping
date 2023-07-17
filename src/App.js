@@ -7,6 +7,46 @@ import Header from "./component/Header";
 import Footer from "./component/Footer";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { styled } from "styled-components";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./toast.css";
+
+const Container = styled(ToastContainer)`
+  .Toastify__toast {
+    border-radius: 20px;
+    font-weight: bold;
+    color: black;
+    width: 270px;
+  }
+
+  .Toastify__toast-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .Toastify__toast-icon > svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+  }
+
+  .Toastify__toast--success {
+    .Toastify__toast-icon {
+      background-image: url("/Image/Property-on.png");
+    }
+  }
+
+  .Toastify__toast--error {
+    .Toastify__toast-icon {
+      background-image: url("/Image/Property-off.png");
+    }
+  }
+  .Toastify__close-button {
+    display: none;
+  }
+`;
 
 function App() {
   const [items, setItems] = useState([]);
@@ -60,6 +100,11 @@ function App() {
         </Routes>
         <Footer />
       </Router>
+      <Container
+        position="bottom-right"
+        hideProgressBar={true}
+        autoClose={30000}
+      />
     </div>
   );
 }
