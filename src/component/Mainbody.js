@@ -3,38 +3,35 @@ import { useEffect, useState } from "react";
 import Itemlist from "./Itemlist";
 import "./mainbody.css";
 import BookMarkList from "./BookMarkList";
+import { styled } from "styled-components";
+import { toast } from "react-toastify";
+const Texth2 = styled.h2`
+  width: 90%;
+  height: 10px;
+`;
+const Ddd = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  //overflow: hidden;
+  //이중div
+`;
 
-const Mainbody = () => {
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    getItems();
-  }, []);
-
-  const getItems = async () => {
-    try {
-      const response = await axios.get(
-        "http://cozshopping.codestates-seb.link/api/v1/products"
-      );
-      const itemsWithBookmark = response.data.map((item) => ({
-        ...item,
-        isBookmarked: false,
-      }));
-      setItems(itemsWithBookmark);
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-      setIsLoading(false);
-    }
-  };
-
-  const toggleBookmark = (itemId) => {
+const Mainbody = ({ items, setItems, isLoading }) => {
+  const handleBookmarkClick = (itemId) => {
     setItems((prevItems) =>
       prevItems.map((item) => {
         if (item.id === itemId) {
-          return { ...item, isBookmarked: !item.isBookmarked };
+          const isBookmarked = !item.isBookmarked;
+          if (isBookmarked) {
+            toast.success("북마크가 추가되었습니다."); // 북마크 추가 시 Toast 메시지
+          } else {
+            toast.error("북마크가 제거되었습니다."); // 북마크 제거 시 Toast 메시지
+          }
+          return { ...item, isBookmarked };
         }
+
         return item;
       })
     );
@@ -46,12 +43,20 @@ const Mainbody = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <h2>상품 리스트</h2>
-          <Itemlist items={items.slice(0, 4)} toggleBookmark={toggleBookmark} />
-          <h2>북마크 리스트</h2>
-          <BookMarkList
-            items={items.filter((item) => item.isBookmarked).slice(0, 4)}
-          />
+          <Ddd>
+            <Texth2>상품 리스트</Texth2>
+            <Itemlist
+              items={items.slice(0, 4)}
+              setItems={setItems}
+              onBookmarkClick={handleBookmarkClick}
+            />
+            <Texth2>북마크 리스트</Texth2>
+            <BookMarkList
+              items={items.filter((item) => item.isBookmarked).slice(0, 4)}
+              setItems={setItems}
+              onBookmarkClick={handleBookmarkClick}
+            />
+          </Ddd>
         </>
       )}
     </main>
