@@ -4,6 +4,14 @@ import Bookmark from "./Bookmark";
 export default {
   title: "Components/Bookmark",
   component: Bookmark,
+  tags: ["autodocs"],
+
+  argTypes: {
+    isBookmarked: {
+      description: "북마크 상태 (true: 북마크 on, false: 북마크 off)",
+      defaultValue: true,
+    },
+  },
 };
 
 const Template = (args) => {
