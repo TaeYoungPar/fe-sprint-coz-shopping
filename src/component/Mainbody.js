@@ -1,5 +1,3 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import Itemlist from "./Itemlist";
 import "./mainbody.css";
 import BookMarkList from "./BookMarkList";

@@ -48,6 +48,18 @@ const TopTextDiv = styled.div`
   height: 24px;
 `;
 
+const BookmarkPos = styled.div`
+  position: absolute;
+  bottom: 65px;
+  right: 25px;
+`;
+
+const BookmarkPosWithImg = styled.div`
+  position: absolute;
+  right: -301px;
+  top: -14px;
+`;
+
 const BookMarkList = ({ items, setItems, onBookmarkClick }) => {
   const [selectedImage, setSelectedImage] = useState(false);
   const [selectedItem, setSelectedItem] = useState([]);
@@ -98,14 +110,27 @@ const BookMarkList = ({ items, setItems, onBookmarkClick }) => {
                   onBookmarkClick={onBookmarkClick}
                 />
               )}
-
-              <Bookmark
-                itemId={el.id}
-                setItems={setItems}
-                isBookmarked={el.isBookmarked}
-                selectedImage={selectedImage}
-                onBookmarkClick={onBookmarkClick}
-              />
+              {selectedImage ? (
+                <BookmarkPosWithImg>
+                  <Bookmark
+                    itemId={el.id}
+                    setItems={setItems}
+                    isBookmarked={el.isBookmarked}
+                    selectedImage={selectedImage}
+                    onBookmarkClick={onBookmarkClick}
+                  />
+                </BookmarkPosWithImg>
+              ) : (
+                <BookmarkPos>
+                  <Bookmark
+                    itemId={el.id}
+                    setItems={setItems}
+                    isBookmarked={el.isBookmarked}
+                    selectedImage={selectedImage}
+                    onBookmarkClick={onBookmarkClick}
+                  />
+                </BookmarkPos>
+              )}
               <TopTextDiv>
                 <TextDiv>
                   {el.type === "Brand"

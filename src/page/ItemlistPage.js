@@ -8,7 +8,7 @@ const Flex = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: whitesmoke;
+  background-color: white;
 `;
 
 const CategoryDiv = styled.div`

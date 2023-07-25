@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
 const BookmarkIcon = styled.img`
-  position: absolute;
-  bottom: 65px;
-  right: 25px;
   width: 24px;
   height: 24px;
   cursor: pointer;
@@ -17,17 +14,7 @@ const ModalBookmarkIcon = styled.img`
   cursor: pointer;
 `;
 
-// const ModalBookmarkIcon = styled(BookmarkIcon)`
-//   transform: translate(-50%, -50%);
-// `;
-
-const Bookmark = ({
-  itemId,
-  setItems,
-  isBookmarked,
-  selectedImage,
-  onBookmarkClick,
-}) => {
+const Bookmark = ({ itemId, isBookmarked, selectedImage, onBookmarkClick }) => {
   const handleClick = () => {
     onBookmarkClick(itemId); // 북마크 클릭 이벤트 핸들러 호출
   };
