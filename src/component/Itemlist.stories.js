@@ -4,6 +4,14 @@ import Itemlist from "./Itemlist";
 export default {
   title: "Components/Itemlist",
   component: Itemlist,
+  tags: ["autodocs"],
+
+  argTypes: {
+    items: {
+      description: "상품 리스트중 하나의 Item, 모달 및 북마크 기능 가능",
+      defaultValue: true,
+    },
+  },
 };
 
 const onBookmarkClick = (itemId, setItems, items) => {
